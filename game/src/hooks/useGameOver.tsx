@@ -7,5 +7,5 @@ export const useGameOver = () => {
         setGameOver(false);
     }, []);
 
-    return [gameOver, setGameOver, resetGameOver];
+    return [gameOver, setGameOver, resetGameOver] as const;
 }
