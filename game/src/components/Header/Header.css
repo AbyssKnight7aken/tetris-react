@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.main-nav {
+    display: flex;
+}
+
+.main-nav ul div {
+    display: flex;
+}
+
+.main-nav li,
+.main-nav a {
+    display: flex;
+}
+
+.main-nav a {
+    padding: 0 1em;
+    text-decoration: none;
+}
+
+.main-nav a:hover {
+    text-decoration: underline;
+}
+
