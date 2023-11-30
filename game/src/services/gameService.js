@@ -11,7 +11,7 @@ export const getBookById = async (bookId) => {
 }
 
 export const createScore = async (gameData) => {
-    const result = await request.post('/logs/', gameData);
+    const result = await request.post('/scores/', gameData);
     console.log(result);
     return result;
 }
