@@ -1,5 +1,6 @@
 import { useState, useEffect, createContext, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {useGameStats} from '../hooks/useGameStats';
 
 import * as gameService from '../services/gameService';
 
@@ -8,6 +9,8 @@ export const GameContext = createContext();
 export const GameProvider = ({ children }) => {
     const navigate = useNavigate();
     const [games, setGames] = useState([]);
+
+    const [gameStats, addLinesCleared] = useGameStats();
 
     // useEffect(() => {
     //     try {
@@ -27,7 +30,7 @@ export const GameProvider = ({ children }) => {
     const onCreateGameSubmit = async (data) => {
         const newGame = await gameService.createScore(data);
 
-        setGames(state => [...state, newGame]);
+        //setGames(state => [...state, newGame]);
         navigate('/scoreBoard');
     }
 
@@ -52,7 +55,9 @@ export const GameProvider = ({ children }) => {
         getGame,
         onCreateGameSubmit,
         onGameEditSubmit,
-        onGameDelete
+        onGameDelete,
+        gameStats,
+        addLinesCleared,
     };
     //console.log(context);
     return (
