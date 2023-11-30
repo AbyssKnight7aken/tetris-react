@@ -12,20 +12,20 @@ export const GameProvider = ({ children }) => {
 
     const [gameStats, addLinesCleared] = useGameStats();
 
-    // useEffect(() => {
-    //     try {
-    //         async function getAllGames() {
-    //             const games = await gameService.getAll();
-    //             //console.log(games);
-    //             setGames(games);
-    //             return games;
-    //         }
-    //         getAllGames();
-    //     } catch (error) {
-    //         console.log('Error, ' + error);
-    //     }
+    useEffect(() => {
+        try {
+            async function getAllGames() {
+                const games = await gameService.getAll();
+                console.log(games);
+                setGames(games);
+                return games;
+            }
+            getAllGames();
+        } catch (error) {
+            console.log('Error, ' + error);
+        }
 
-    // }, []);
+    }, []);
 
     const onCreateGameSubmit = async (data) => {
         const newGame = await gameService.createScore(data);

@@ -1,8 +1,8 @@
 import * as request from './requester';
 
-export const getAllBooks = async () => {
-    const books = await request.get('/data/books?sortBy=_createdOn%20desc');
-    return books;
+export const getAll = async () => {
+    const scores = await request.get('/scores?page=${page}');
+    return scores;
 }
 
 export const getBookById = async (bookId) => {

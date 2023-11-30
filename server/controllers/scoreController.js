@@ -69,16 +69,16 @@ const itemsPerPage = 6;
 // });
 
 
-logController.get('/', async (req, res) => {
+scoreController.get('/', async (req, res) => {
     let items = [];
     const page = req.query.page - 1 || 0;
 
     try {
         if (req.query.where) {
             const userId = JSON.parse(req.query.where.split('=')[1]);
-            items = await logManager.getByUserId(userId, page, itemsPerPage);
+            items = await scoreManager.getByUserId(userId, page, itemsPerPage);
         } else {
-            items = await logManager.getAll(page, itemsPerPage);
+            items = await scoreManager.getAll(page, itemsPerPage);
         }
         res.json(items);
     } catch (err) {
