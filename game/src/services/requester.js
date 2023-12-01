@@ -1,7 +1,6 @@
 const host = 'http://localhost:3000/api';
 
 async function request(method, url, data) {
-    console.log(data);
     const options = {method, headers: {}};
 
     const userData = JSON.parse(localStorage.getItem('auth'));
@@ -16,7 +15,6 @@ async function request(method, url, data) {
         options.headers['enctype'] = 'multipart/form-data';
         // 'enctype': 'multipart/form-data'
         options.body = JSON.stringify(data);
-        console.log(options.body);
     }
 
     try {
@@ -36,7 +34,6 @@ async function request(method, url, data) {
             throw error;
         }
 
-        console.log(result);
         return result
 
     } catch (err) {

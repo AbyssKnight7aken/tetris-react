@@ -8,7 +8,7 @@ const Header = () => {
     return (
         <header className="section-site-header">
     <div className="container">
-        <p className="site-title"><Link to="/game">Tetris React</Link></p>
+        <p className="site-title"><Link to="/">Tetris React</Link></p>
 
         <nav className="main-nav">
             <ul>
@@ -17,7 +17,7 @@ const Header = () => {
                         <li><Link to="about">About</Link></li>
                         <li><Link to="scoreboard">ScoreBoard</Link></li>
                         {/* <span>Welcome, {username}</span> */}
-                        <li>Welcome,<Link to="profile">{username}</Link></li>
+                        <li><Link to="profile">Welcome, {username}</Link></li>
                         <li><Link to="logout">Logout</Link></li>
                     </div>
                     : <div id="guest">
