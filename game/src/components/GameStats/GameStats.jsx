@@ -6,7 +6,7 @@ const GameStats = ({ gameStats }) => {
   const { level, points, linesCompleted, linesPerLevel } = gameStats;
   const linesToLevel = linesPerLevel - linesCompleted;
 
-  console.log(gameStats);
+  //console.log(gameStats);
 
   return (
     <ul className="GameStats GameStats__right">

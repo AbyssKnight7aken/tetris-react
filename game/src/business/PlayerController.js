@@ -2,6 +2,7 @@ import { hasCollision, isWithinBoard } from "../business/Board";
 import { rotate } from "../business/Tetrominoes";
 import { Action } from "../business/Input";
 
+
 const attemptRotation = ({ board, player, setPlayer }) => {
   const shape = rotate({
     piece: player.tetromino.shape,
@@ -53,7 +54,7 @@ export const movePlayer = ({ delta, position, shape, board }) => {
   return { collided: isHit, nextPosition };
 };
 
-const attemptMovement = ({ board, action, player, setPlayer, setGameOver }) => {
+export const attemptMovement = ({ board, action, player, setPlayer, setGameOver }) => {
   const delta = { row: 0, column: 0 };
   let isFastDropping = false;
 
@@ -77,14 +78,16 @@ const attemptMovement = ({ board, action, player, setPlayer, setGameOver }) => {
   // Did we collide immediately? If so, game over, man!
   const isGameOver = collided && player.position.row === 0;
   if (isGameOver) {
-    setGameOver(isGameOver);
+    console.log('GAME OVER');
+    setGameOver("isGameOver");
   }
 
   setPlayer({
     ...player,
     collided,
     isFastDropping,
-    position: nextPosition
+    position: nextPosition,
+    isGameOver
   });
 };
 

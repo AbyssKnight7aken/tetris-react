@@ -6,16 +6,9 @@ import { playerController } from "../../business/PlayerController";
 import { useDropTime } from "../../hooks/useDropTime";
 import { useInterval } from "../../hooks/useInterval";
 
-const GameController = ({
-  board,
-  gameStats,
-  player,
-  setGameOver,
-  setPlayer
-}) => {
-  const [dropTime, pauseDropTime, resumeDropTime] = useDropTime({
-    gameStats
-  });
+
+const GameController = ({ board, gameStats, player, setGameOver, setPlayer }) => {
+  const [dropTime, pauseDropTime, resumeDropTime] = useDropTime({ gameStats });
 
   useInterval(() => {
     handleInput({ action: Action.SlowDrop });

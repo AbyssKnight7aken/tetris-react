@@ -22,6 +22,7 @@ const Tetris = ({ rows, columns, setGameOver }) => {
     addLinesCleared
   });
 
+
   return (
     <div className="Tetris">
       <Board board={board} />

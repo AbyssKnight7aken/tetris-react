@@ -1,27 +1,20 @@
 import { useState, useCallback } from "react";
 import { useGameContext } from '../contexts/gameContext';
 
-let counter = 0;
-
 export const useGameOver = () => {
   const { onCreateGameSubmit, gameStats } = useGameContext();
   const [gameOver, setGameOver] = useState(true);
-  //const [result, setResult] = useState(gameStats);
-  if (gameOver) {
-    counter++;
-    //console.log(gameOver);
+  console.log(gameStats);
+
+  if (gameOver === 'isGameOver') {
+    console.log('fetch request!');
+    onCreateGameSubmit(gameStats);
   }
 
-  if (counter === 2) {
-    //console.log(result);
-    onCreateGameSubmit(gameStats);
-    //setResult(null);
-    counter = 1;
-  }
   const resetGameOver = useCallback(() => {
+    console.log(gameOver);
     setGameOver(false);
   }, []);
-
 
   return [gameOver, setGameOver, resetGameOver];
 };
