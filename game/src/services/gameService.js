@@ -1,13 +1,13 @@
-import * as request from './requester';
+import * as request from './apiService';
 
 export const getAll = async () => {
     const scores = await request.get('/scores?page=${page}');
     return scores;
 }
 
-export const getBookById = async (bookId) => {
-    const book = await request.get(`/data/books/${bookId}`);
-    return book;
+export const getScoreById = async (scoreId) => {
+    const score = await request.get(`/scores/${scoreId}`);
+    return score;
 }
 
 export const createScore = async (gameData) => {
@@ -16,8 +16,8 @@ export const createScore = async (gameData) => {
     return result;
 }
 
-export const edit = async (bookId, data) => {
-    const result = await request.put(`/data/books/${bookId}`, data);
+export const edit = async (scoreId, data) => {
+    const result = await request.put(`/scores/${scoreId}`, data);
     return result;
 }
 
