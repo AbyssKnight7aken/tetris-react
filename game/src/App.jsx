@@ -13,8 +13,10 @@ import About from './components/About/About';
 import Home from './components/Home/Home';
 import { AuthProvider } from './contexts/authContext';
 import { GameProvider } from './contexts/gameContext';
-import { RouteGuard } from './components/common/RouteGuard';
-import { GuestGuard } from './components/common/GuestGuard';
+import { RouteGuard } from './components/guards/RouteGuard';
+import { GuestGuard } from './components/guards/GuestGuard';
+import ScoreDetails from './components/ScoreDetails/ScoreDetails';
+import EditScore from './components/EditScore/EditScore';
 
 function App() {
     return (
@@ -25,10 +27,17 @@ function App() {
                     <Routes>
                         <Route path='/' element={<Home />} />
                         <Route path='/scoreboard' element={<ScoreBoard />} />
+                        < Route path='/scoreboard/:scoreId' element={<ScoreDetails />} />
                         <Route element={<RouteGuard />}>
                             <Route path='/game' element={<Game rows={20} columns={10} />} />
                             <Route path="/logout" element={<Logout />} />
                             <Route path='/profile' element={<Profile />} />
+                            < Route path='/scoreboard/:scoreId/edit' element={<EditScore />} />
+                            {/* < Route path='/catalogue/:gameId/edit' element={
+                                <GameOwner>
+                                    <EditGame />
+                                </GameOwner>
+                            } /> */}
                         </Route>
                         <Route element={<GuestGuard />}>
                             <Route path='/register' element={<Register />} />

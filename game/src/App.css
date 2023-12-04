@@ -3,6 +3,6 @@
   text-align: center;
   color: #fff;
   background-color: #282c34;
-  height: 92vh;
+  min-height: 100vh;
   padding: 20px;
 }
