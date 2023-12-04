@@ -30,5 +30,9 @@ export const useGameStats = () => {
     }, []);
   }, []);
 
-  return [gameStats, addLinesCleared];
+  const resetGameStats = useCallback(() => {
+    setGameStats(buildGameStats());
+  }, []);
+
+  return [gameStats, addLinesCleared, resetGameStats];
 };
