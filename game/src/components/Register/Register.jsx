@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/authContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useForm } from '../../hooks/useForm';
 
 import './Register.css';
@@ -14,8 +14,12 @@ const LoginFormKeys = {
 
 const Register = () => {
 
-    const { onRegisterSubmit } = useContext(AuthContext);
-    const { values, changeHandler, onSubmit } = useForm({
+    const { onRegisterSubmit, serverError, resetServerError } = useContext(AuthContext);
+    useEffect(() => {
+        resetServerError();
+    }, []);
+
+    const { values, changeHandler, onSubmit, errors, focused, handleFocus } = useForm({
         [LoginFormKeys.name]: '',
         [LoginFormKeys.email]: '',
         [LoginFormKeys.password]: '',
@@ -37,10 +41,15 @@ const Register = () => {
                             className="form__input"
                             placeholder="Username"
                             required
+                            invalid={errors.username && !focused ? "true" : "false"}
+                            onBlur={handleFocus}
+                            focused={focused.toString()}
                             name={LoginFormKeys.name}
                             value={values[LoginFormKeys.name]}
                             onChange={changeHandler} />
                     </div>
+
+                    {errors.username && !focused && <span className='error'>{errors.username}</span> }
 
                     <div className="form__field">
                         <label htmlFor="login__email"><svg className="icon"><use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#user"></use></svg><span className="hidden">Username</span></label>
@@ -49,10 +58,15 @@ const Register = () => {
                             className="form__input"
                             placeholder="Email"
                             required
+                            invalid={errors.email && !focused ? "true" : "false"}
+                            onBlur={handleFocus}
+                            focused={focused.toString()}
                             name={LoginFormKeys.email}
                             value={values[LoginFormKeys.email]}
                             onChange={changeHandler} />
                     </div>
+
+                    {errors.email && !focused && <span className='error'>{errors.email}</span> }
 
                     <div className="form__field">
                         <label htmlFor="login__password"><svg className="icon"><use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#lock"></use></svg><span className="hidden">Password</span></label>
@@ -62,10 +76,15 @@ const Register = () => {
                             className="form__input"
                             placeholder="Password"
                             required
+                            invalid={errors.password && !focused ? "true" : "false"}
+                            onBlur={handleFocus}
+                            focused={focused.toString()}
                             name={LoginFormKeys.password}
                             value={values[LoginFormKeys.password]}
                             onChange={changeHandler} />
                     </div>
+
+                    {errors.password && !focused && <span className='error'>{errors.password}</span> }
 
                     <div className="form__field">
                         <label htmlFor="login__repeat-password"><svg className="icon"><use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#lock"></use></svg><span className="hidden">Password</span></label>
@@ -75,14 +94,21 @@ const Register = () => {
                             className="form__input"
                             placeholder="Repeat Password"
                             required
+                            invalid={errors.confirmPassword && !focused ? "true" : "false"}
+                            onBlur={handleFocus}
+                            focused={focused.toString()}
                             name={LoginFormKeys.repass}
                             value={values[LoginFormKeys.repass]}
                             onChange={changeHandler} />
                     </div>
 
+                    {errors.confirmPassword && !focused && <span className='error'>{errors.confirmPassword}</span> }
+
                     <div className="form__field">
-                        <input type="submit" value="Register" />
+                        <input disabled={Object.keys(errors).length > 0 } type="submit" value="Register" />
                     </div>
+
+                    {serverError && Object.keys(errors).length === 0 && <span className='error'>{serverError}</span>}
 
                 </form>
 
