@@ -204,3 +204,15 @@
   .text--center {
     text-align: center;
   }
+
+  .error {
+    color: red;
+  }
+
+  input[invalid="true"] {
+    border: 1px solid red;
+  }
+
+  label[invalid="true"] {
+    border: 1px solid red;
+  }

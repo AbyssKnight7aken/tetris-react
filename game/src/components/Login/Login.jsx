@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useAuthContext } from "../../contexts/authContext";
 import { useForm } from '../../hooks/useForm';
 import './Login.css';
+import { useEffect } from 'react';
 
 const LoginFormKeys = {
     email: 'email',
@@ -9,8 +10,12 @@ const LoginFormKeys = {
 };
 
 const Login = () => {
-    const { onLoginSubmit } = useAuthContext();
-    const { values, changeHandler, onSubmit } = useForm({
+    const { onLoginSubmit, serverError, resetServerError } = useAuthContext();
+    useEffect(() => {
+        resetServerError();
+    }, []);
+
+    const { values, changeHandler, onSubmit, changeValues, errors, focused, handleFocus } = useForm({
         [LoginFormKeys.email]: '',
         [LoginFormKeys.password]: '',
     }, onLoginSubmit);
@@ -30,10 +35,15 @@ const Login = () => {
                             className="form__input"
                             placeholder="Email"
                             required
+                            invalid={errors.email && !focused ? "true" : "false"}
+                            onBlur={handleFocus}
+                            focused={focused.toString()}
                             name={LoginFormKeys.email}
                             value={values[LoginFormKeys.email]}
                             onChange={changeHandler} />
                     </div>
+
+                    {errors.email && !focused && <span className='error'>{errors.email}</span>}
 
                     <div className="form__field">
                         <label htmlFor="login__password"><svg className="icon"><use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#lock"></use></svg><span className="hidden">Password</span></label>
@@ -43,14 +53,23 @@ const Login = () => {
                             className="form__input"
                             placeholder="Password"
                             required
+                            invalid={errors.password && !focused ? "true" : "false"}
+                            onBlur={handleFocus}
+                            focused={focused.toString()}
                             name={LoginFormKeys.password}
                             value={values[LoginFormKeys.password]}
                             onChange={changeHandler} />
                     </div>
 
+                    {errors.password && !focused && <span className='error'>{errors.password}</span>}
+
+
                     <div className="form__field">
-                        <input type="submit" value="Login" />
+                        <input disabled={Object.keys(errors).length > 0} type="submit" value="Login" />
                     </div>
+
+                    {serverError && Object.keys(errors).length === 0 && <span className='error'>{serverError}</span>}
+
 
                 </form>
 
