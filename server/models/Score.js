@@ -10,7 +10,7 @@ const ScoreSchema = new mongoose.Schema({
     linesCompleted: {
         type: Number,
         required: [true, 'linesCompleted is required!'],
-        min: [1, 'linesCompletedl should be a positive number!'],
+        min: [0, 'linesCompletedl should be at least 0 or above!'],
         max: [999, 'linesCompleted should not be more than 999!'],
     },
     points: {

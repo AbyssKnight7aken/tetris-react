@@ -79,7 +79,7 @@ export const attemptMovement = ({ board, action, player, setPlayer, setGameOver 
   const isGameOver = collided && player.position.row === 0;
   if (isGameOver) {
     console.log('GAME OVER');
-    setGameOver("isGameOver");
+    setGameOver('GAMEOVER');
   }
 
   setPlayer({

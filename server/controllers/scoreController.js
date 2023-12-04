@@ -122,44 +122,44 @@ scoreController.post('/', async (req, res) => {
     }
 });
 
-// logController.get('/:id', async (req, res) => {
-//     const log = await logManager.getById(req.params.id);
-//     res.json(log);
-// });
+scoreController.get('/:id', async (req, res) => {
+    const score = await scoreManager.getById(req.params.id);
+    res.json(score);
+});
 
-// logController.put('/:id', isAuth, async (req, res, next) => {
-//     const item = await logManager.getById(req.params.id);
-//     //console.log('req.user', req.user._id);
-//     //console.log('item._ownerId', item._ownerId._id.toString());
-//     if (req.user._id != item._ownerId._id.toString()) {
-//         return res.status(403).json({ message: 'You cannot modify this record' });
-//     }
+scoreController.put('/:id', isAuth, async (req, res, next) => {
+    const item = await scoreManager.getById(req.params.id);
+    //console.log('req.user', req.user._id);
+    //console.log('item._ownerId', item._ownerId._id.toString());
+    if (req.user._id != item._ownerId._id.toString()) {
+        return res.status(403).json({ message: 'You cannot modify this record' });
+    }
 
-//     try {
+    try {
 
-//         const data = {
-//             "name": req.body.name,
-//             //"date": moment(req.body.date).format('MMMM Do YYYY, h:mm:ss a'),
-//             "date": req.body.date,
-//             "description": req.body.description,
-//             "img": {
-//                 "data": fs.readFileSync("uploads/" + req.file.filename),
-//                 "contentType": "image/png",
-//             },
-//             "location": req.body.location,
-//             "_ownerId": req.user._id
-//         };
+        const data = {
+            "level": Number(req.body.level),
+            "linesCompleted": Number(req.body.linesCompleted),
+            "points": Number(req.body.points),
+            //"date": moment(req.body.date).format('MMMM Do YYYY, h:mm:ss a'),
+            "date": moment(),
+            "_ownerId": req.user._id,
+            // "img": {
+            //     "data": fs.readFileSync("uploads/" + req.file.filename),
+            //     "contentType": "image/png",
+            // },
+        };
 
-//         const updatedLog = await logManager.update(req.params.id, data);
-//         console.log('updated!');
-//         res.json(updatedLog);
+        const updatedScore = await scoreManager.update(req.params.id, data);
+        console.log('updated!');
+        res.json(updatedScore);
 
-//     } catch (err) {
-//         const message = parseError(err);
-//         console.log(message);
-//         res.status(400).json({ message });
-//     }
-// });
+    } catch (err) {
+        const message = parseError(err);
+        console.log(message);
+        res.status(400).json({ message });
+    }
+});
 
 // logController.delete('/:id', isAuth, async (req, res) => {
 //     const item = await logManager.getById(req.params.id);
