@@ -1,0 +1,49 @@
+.about_section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 65em;
+    margin: 5em auto;
+    max-width: 65vw;
+}
+
+.about_section h1 {
+    color: red;
+}
+
+/* .app_logo {
+    display: flex;
+    flex-direction: column;
+    height: 800px;
+    width: 100%;
+    align-items: center;
+    gap: 4em;
+    margin:2em;
+} */
+
+.logo_image {
+    width: 500px;
+    height: 347px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin-bottom: 2em;
+
+}
+
+.info_section p {
+    font-size: 1.5em;
+    text-shadow: 1px 1px 2px black;
+    max-width: 66ch;
+    margin: 1.3em;
+}
+
+.info_section a {
+    color: #04ffcd;
+}
+
+.game_controls p {
+    color: #04ffcd;
+    text-shadow: 1px 1px 2px black;
+    margin: 0.3em;
+}
