@@ -1,6 +1,6 @@
 import { useState, useEffect, createContext, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {useGameStats} from '../hooks/useGameStats';
+import { useGameStats } from '../hooks/useGameStats';
 
 import * as gameService from '../services/gameService';
 
@@ -8,41 +8,64 @@ export const GameContext = createContext();
 
 export const GameProvider = ({ children }) => {
     const navigate = useNavigate();
-    const [games, setGames] = useState([]);
+    const [scores, setScores] = useState([]);
+    const [serverError, setServerError] = useState(null);
+    const resetServerError = () => {
+        setServerError(null);
+    };
 
-    const [gameStats, addLinesCleared] = useGameStats();
+    const [gameStats, addLinesCleared, resetGameStats] = useGameStats();
 
     useEffect(() => {
         try {
-            async function getAllGames() {
-                const games = await gameService.getAll();
-                console.log(games);
-                setGames(games);
-                return games;
+            async function getAllScores() {
+                const scores = await gameService.getAll();
+                console.log(scores);
+                setScores(scores);
+                return scores;
             }
-            getAllGames();
+            getAllScores();
         } catch (error) {
-            console.log('Error, ' + error);
+            console.log(error.message);
+            return setServerError(error.message);
         }
 
     }, []);
 
     const onCreateGameSubmit = async (data) => {
-        const newGame = await gameService.createScore(data);
+        try {
+            const newScore = await gameService.createScore(data);
+            //setScores(state => [...state, newScore]);
+            const scores = await gameService.getAll();
+            setScores(scores);
+            resetGameStats();
+            navigate('/scoreBoard');
+        } catch (error) {
+            console.log(error.message);
+            return setServerError(error.message);
+        }
 
-        //setGames(state => [...state, newGame]);
+    }
+
+    const onScoreEditSubmit = async (data) => {
+        try {
+            const result = await gameService.edit(data._id, data);
+            console.log(result);
+            const scores = await gameService.getAll();
+            setScores(scores);
+            //setScores(state => state.map(x => x._id === data._id ? result : x));
+            navigate(`/scoreboard/${data._id}`);
+        } catch (error) {
+            console.log(error.message);
+            return setServerError(error.message);
+        }
+
+    }
+
+    const onGameDelete =async (scoreId) => {
+        gameService.deleteScore(scoreId);
+        setScores(state => state.filter(score => score._id !== scoreId));
         navigate('/scoreBoard');
-    }
-
-    const onGameEditSubmit = async (data) => {
-        const result = await gameService.edit(data._id, data);
-        console.log(result);
-        navigate(`/catalogue/${data._id}`);
-        setGames(state => state.map(x => x._id === data._id ? result : x));
-    }
-
-    const onGameDelete = (gameId) => {
-        setGames(state => state.filter(game => game._id !== gameId));
     }
 
     const getGame = (gameId) => {
@@ -51,13 +74,15 @@ export const GameProvider = ({ children }) => {
 
 
     const gameContext = {
-        games,
+        scores,
         getGame,
         onCreateGameSubmit,
-        onGameEditSubmit,
+        onScoreEditSubmit,
         onGameDelete,
         gameStats,
         addLinesCleared,
+        serverError,
+        resetServerError,
     };
     //console.log(context);
     return (

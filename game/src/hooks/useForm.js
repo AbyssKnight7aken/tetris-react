@@ -34,6 +34,23 @@ export const useForm = (initialValues, onSubmitHandler) => {
                 validationErrors.confirmPassword = 'Passwords do not match!';
             }
 
+            if (updatedValues.level === '') {
+                validationErrors.level = 'Level is required!';
+            } else if (updatedValues.level && (Number(updatedValues.level) < 1 || Number(updatedValues.level) > 999)) {
+                validationErrors.level = 'The level should be a number between 1 and 999!';
+            }
+
+            if (updatedValues.linesCompleted === '') {
+                validationErrors.linesCompleted = 'LinesCompleted is required!';
+            } else if (updatedValues.linesCompleted && (Number(updatedValues.linesCompleted) < 0 || Number(updatedValues.linesCompleted) > 999)) {
+                validationErrors.linesCompleted = 'LinesCompleted should be a number between 0 and 999!';
+            }
+
+            if (updatedValues.points === '') {
+                validationErrors.points = 'Points are required!';
+            } else if (updatedValues.points && (Number(updatedValues.points) < 0 || Number(updatedValues.points) > 9999)) {
+                validationErrors.points = 'Points should be a number between 0 and 9999!';
+            }
 
             setErrors(validationErrors);
 

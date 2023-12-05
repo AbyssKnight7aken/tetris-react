@@ -21,8 +21,8 @@ export const edit = async (scoreId, data) => {
     return result;
 }
 
-export const deleteBook = async (bookId) => {
-    const result = await request.del(`/data/books/${bookId}`);
+export const deleteScore = async (scoreId) => {
+    const result = await request.del(`/scores/${scoreId}`);
     return result;
 }
 
@@ -31,8 +31,8 @@ export const getBooksByOwner = async (userId) => {
     return result;
 }
 
-export const likeBook = async (bookId) => {
-    const result = await request.post('/data/likes', {bookId});
+export const addLike = async (scoreId) => {
+    const result = await request.get(`/scores/${scoreId}/likes`);
     return result;
 }
 

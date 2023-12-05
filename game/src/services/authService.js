@@ -1,4 +1,4 @@
-import { get, post } from "./requester";
+import { get, post } from './apiService';
 
 const ednpoints = {
     login: '/users/login',

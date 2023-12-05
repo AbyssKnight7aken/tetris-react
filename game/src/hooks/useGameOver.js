@@ -6,7 +6,7 @@ export const useGameOver = () => {
   const [gameOver, setGameOver] = useState(true);
   console.log(gameStats);
 
-  if (gameOver === 'isGameOver') {
+  if (gameOver === 'GAMEOVER') {
     console.log('fetch request!');
     onCreateGameSubmit(gameStats);
   }

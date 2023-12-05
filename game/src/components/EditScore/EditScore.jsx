@@ -12,13 +12,12 @@ import './EditScore.css';
 
 
 const EditScore = () => {
-    const { onScoreEditSubmit } = useGameContext();
+    const { onScoreEditSubmit, serverError, resetServerError } = useGameContext();
     const { scoreId } = useParams();
     const { values, changeHandler, onSubmit, changeValues, errors, focused, handleFocus } = useForm({
         level: '',
         linesCompleted: '',
         points: '',
-        date: ''
     }, onScoreEditSubmit);
 
     useEffect(() => {
@@ -45,7 +44,7 @@ const EditScore = () => {
                             className="form__input"
                             placeholder="level"
                             required
-                            invalid={errors.username && !focused ? "true" : "false"}
+                            invalid={errors.level && !focused ? "true" : "false"}
                             onBlur={handleFocus}
                             focused={focused.toString()}
                             name="level"
@@ -53,7 +52,7 @@ const EditScore = () => {
                             onChange={changeHandler} />
                     </div>
 
-                    {errors.username && !focused && <span className='error'>{errors.username}</span>}
+                    {errors.level && !focused && <span className='error'>{errors.level}</span>}
 
                     <div className="form__field">
                         <label htmlFor="linesCompleted"><svg className="icon"><use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#user"></use></svg><span className="hidden">Username</span></label>
@@ -63,7 +62,7 @@ const EditScore = () => {
                             className="form__input"
                             placeholder="linesCompleted"
                             required
-                            invalid={errors.email && !focused ? "true" : "false"}
+                            invalid={errors.linesCompleted && !focused ? "true" : "false"}
                             onBlur={handleFocus}
                             focused={focused.toString()}
                             name="linesCompleted"
@@ -71,7 +70,7 @@ const EditScore = () => {
                             onChange={changeHandler} />
                     </div>
 
-                    {errors.email && !focused && <span className='error'>{errors.email}</span>}
+                    {errors.linesCompleted && !focused && <span className='error'>{errors.linesCompleted}</span>}
 
                     <div className="form__field">
                         <label htmlFor="points"><svg className="icon"><use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#lock"></use></svg><span className="hidden">Password</span></label>
@@ -81,7 +80,7 @@ const EditScore = () => {
                             className="form__input"
                             placeholder="points"
                             required
-                            invalid={errors.password && !focused ? "true" : "false"}
+                            invalid={errors.points && !focused ? "true" : "false"}
                             onBlur={handleFocus}
                             focused={focused.toString()}
                             name="points"
@@ -89,25 +88,7 @@ const EditScore = () => {
                             onChange={changeHandler} />
                     </div>
 
-                    {errors.password && !focused && <span className='error'>{errors.password}</span>}
-
-                    <div className="form__field">
-                        <label htmlFor="date"><svg className="icon"><use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#lock"></use></svg><span className="hidden">Password</span></label>
-                        <input
-                            id="date"
-                            type="text"
-                            className="form__input"
-                            placeholder="date"
-                            required
-                            invalid={errors.confirmPassword && !focused ? "true" : "false"}
-                            onBlur={handleFocus}
-                            focused={focused.toString()}
-                            name="date"
-                            value={values.date}
-                            onChange={changeHandler} />
-                    </div>
-
-                    {errors.confirmPassword && !focused && <span className='error'>{errors.confirmPassword}</span>}
+                    {errors.points && !focused && <span className='error'>{errors.points}</span>}
 
                     <div className="form__field">
                         <input disabled={Object.keys(errors).length > 0} type="submit" value="Edit Score" />
