@@ -4,9 +4,7 @@ import './Card.css';
 const Card = ({ score }) => {
     return (
         <div className="ag-courses_item">
-            {/* <a href="#" className="ag-courses-item_link"> */}
             <Link to={`/scoreboard/${score._id}`} className="ag-courses-item_link">
-
                 <div className="ag-courses-item_bg"></div>
 
                 <div className="ag-courses-item_title">
@@ -16,13 +14,6 @@ const Card = ({ score }) => {
                 <div className="ag-courses-item_title">
                     {score.points} points
                 </div>
-
-                {/* <div className="ag-courses-item_date-box">
-                    Cteated:
-                    <span className="ag-courses-item_date">
-                        {game.date}
-                    </span>
-                </div> */}
             </Link>
         </div>
     );

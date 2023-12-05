@@ -1,3 +1,15 @@
 .scores {
-    margin: 10em 20em;
+    margin: 10em auto;
+    max-width: 65vw;
+}
+
+.scores h1 {
+    font-size: 3em;
+    color: #04ffcd;
+    margin-bottom: 2em;
+}
+
+.scores h2 {
+    font-size: 2em;
+    color: #d44179;
 }

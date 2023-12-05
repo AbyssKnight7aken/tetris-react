@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState, useReducer } from 'react'
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 import { AuthContext } from '../../contexts/authContext';
 import { useGameContext } from '../../contexts/gameContext';
 import * as gameService from '../../services/gameService';
+import Modal from '../common/Modal/Modal';
 //import * as commentService from '../../services/commentService';
 
 //import { AddComment } from './AddComment/AddComment';
@@ -11,22 +12,19 @@ import * as gameService from '../../services/gameService';
 import './ScoreDetails.css';
 
 const ScoreDetails = () => {
-
-
     const { scoreId } = useParams();
     const [score, setScore] = useState({});
+    const [likes, setlikes] = useState(null);
+    const [showModal, setShowModal] = useState(false);
     // const [game, dispatch] = useReducer(gameReducer, {});
     const { userId, isAuthenticated, userEmail } = useContext(AuthContext);
-    // const { onGameDelete } = useContext(GameContext);
-    const isOwner = score._ownerId === userId;
-    // console.log(game);
-    // const navigate = useNavigate();
+    const { onGameDelete } = useGameContext();
+    const isOwner = score._ownerId?._id === userId;
 
     useEffect(() => {
         async function getScoreDetails() {
             const score = await gameService.getScoreById(scoreId);
             setScore(score);
-            console.log(score.points);
         }
         getScoreDetails();
     }, [scoreId]);
@@ -51,45 +49,76 @@ const ScoreDetails = () => {
     //     dispatch({ type: 'ADD_COMMENT', payload: newComment, userEmail })
     // }
 
-    // const onDeleteClick = async () => {
-    //     const confirmed = window.confirm(`Are you sure you want to delete ${game.title}?`);
-    //     //Good UX is ot use custom modal dialogs, instead of confirm! // showDeleteDialog(true)!
-    //     if (confirmed) {
-    //         await gameService.deleteGame(gameId);
-    //         onGameDelete(gameId);
-    //         navigate('/catalogue');
-    //     }
-    // }
+    const onDeleteClick = async () => {
+        setShowModal(true);
+    }
+
+    const close = () => {
+        setShowModal(false);
+    };
+
+    const deleteConfirm = async () => {
+        onGameDelete(scoreId);
+    }
+
+    const onLikeClick = async () => {
+        await gameService.addLike(scoreId);
+        const score = await gameService.getScoreById(scoreId);
+        setScore(score);
+        // const newLikes = await bookService.getLikesBybookId(bookId);
+        // setlikes(newLikes);
+        // setMylikes(1);
+        console.log('like');
+    }
 
     return (
-        <div className="ag-courses_item">
-            <a href="#" className="ag-courses-item_link">
-                <div className="ag-courses-item_bg"></div>
+        <section className="score_details">
+            <div className="ag-courses_item">
+                <div className="ag-courses-item_link">
+                    <div className="ag-courses-item_bg"></div>
 
-                <div className="ag-courses-item_title">
-                    Player:{score?._ownerId?.username}
-                </div>
+                    <div className="ag-courses-item_title">
+                        Player : {score?._ownerId?.username}
+                    </div>
 
-                <div className="ag-courses-item_title">
-                    Level:{score.level}
-                </div>
+                    <div className="ag-courses-item_title">
+                        Level : {score.level}
+                    </div>
 
-                <div className="ag-courses-item_title">
-                    Lines Completed:{score.linesCompleted} 
-                </div>
+                    <div className="ag-courses-item_title">
+                        Lines Completed : {score.linesCompleted}
+                    </div>
 
-                <div className="ag-courses-item_title">
-                    Points:{score.points}
-                </div>
+                    <div className="ag-courses-item_title">
+                        Points: {score.points}
+                    </div>
 
-                <div className="ag-courses-item_date-box">
-                    Cteated:
-                    <span className="ag-courses-item_date">
+                    <div className="ag-courses-item_date-box">
+                        <span className="ag-courses-item_date">
                         {score.date}
-                    </span>
+                        </span>
+                    </div>
+
+                    <div className="buttons">
+                        <p className="button-red">Likes: {score.likes?.length}</p>
+                        {
+                            isAuthenticated && !isOwner &&
+                            <p className="button-blue"><Link onClick={onLikeClick} to="">Likes: {score.likes?.length}</Link></p>
+                        }
+                        {
+                            isAuthenticated && isOwner &&
+                            <>
+                                <p className="button-blue"><Link to={`/scoreboard/${scoreId}/edit`}>Edit</Link></p>
+                                <p className="button-red"><Link onClick={onDeleteClick} to="">Delete</Link></p>
+                            </>
+                        }
+                        {
+                            showModal && <Modal close={close} deleteConfirm={deleteConfirm}></Modal>
+                        }
+                    </div>
                 </div>
-            </a>
-        </div>
+            </div>
+        </section>
     );
 }
 

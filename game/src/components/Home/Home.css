@@ -1,0 +1,12 @@
+.rescent {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    max-width: 70vw;
+}
+
+.home_h1 {
+    margin-bottom: 3em;
+    font-size: 2.5em;
+    color: #04ffcd;
+}

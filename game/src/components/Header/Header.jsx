@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
+import { useAuthContext } from '../../contexts/authContext';
 import "./Header.css";
-
-import { useAuthContext } from "../../contexts/authContext";
 
 const Header = () => {
     const { isAuthenticated, username } = useAuthContext();
     return (
         <header className="section-site-header">
     <div className="container">
-        <p className="site-title"><Link to="/">Tetris React</Link></p>
+        {/* <p className="site-title"><Link to="/">Tetris React</Link></p> */}
+        <Link to="/"><img src="../../../public/images/tetris.png" className="logo" alt="logo" /></Link>
 
         <nav className="main-nav">
             <ul>
@@ -22,6 +22,7 @@ const Header = () => {
                     </div>
                     : <div id="guest">
                         <li><Link to="about">About</Link></li>
+                        <li><Link to="scoreboard">ScoreBoard</Link></li>
                         <li><Link to="login">Login</Link></li>
                         <li><Link to="register">Register</Link></li>
                     </div>
