@@ -27,29 +27,12 @@ const ScoreSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: 'User',
     },
-    // commentList: [{
-    //     user: {
-    //         type: mongoose.Types.ObjectId,
-    //         required: [true, 'Name is required'],
-    //         ref: 'User'
-    //     },
-    //     comment: {
-    //         type: String,
-    //         required: [true, 'Comment message is required']
-    //     }
-    // }],
-    // likes: [{
-    //     user: {
-    //         type: mongoose.Types.ObjectId,
-    //         ref: 'User'
-    //     }
-    // }],
-    // downloads: [{
-    //     user: {
-    //         type: mongoose.Types.ObjectId,
-    //         ref: 'User'
-    //     }
-    // }]
+    likes: [{
+        user: {
+            type: mongoose.Types.ObjectId,
+            ref: 'User'
+        }
+    }],
 });
 
 const Score = mongoose.model('Score', ScoreSchema);

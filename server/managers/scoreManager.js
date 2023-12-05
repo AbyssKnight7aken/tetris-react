@@ -2,7 +2,7 @@ const Score = require('../models/Score');
 
 
 exports.getAll = async (page, itemsPerPage) => {
-    return await Score.find({}).skip(page * itemsPerPage).limit(itemsPerPage).populate('_ownerId');
+    return Score.find({}).skip(page * itemsPerPage).limit(itemsPerPage).populate('_ownerId');
 }
 
 exports.getSearchResult = async (searchInput, page, itemsPerPage) => {
@@ -28,7 +28,8 @@ exports.getByUserId = async (userId, page, itemsPerPage) => {
 }
 
 exports.getById = async (id) => {
-    const score = Score.findById(id).populate('_ownerId').populate('commentList.user');
+    //const score = Score.findById(id).populate('_ownerId').populate('commentList.user');
+    const score = Score.findById(id).populate('_ownerId');
     return score;
 }
 
@@ -36,17 +37,16 @@ exports.create = async (item) => {
     return Score.create(item);
 }
 
-// exports.update = async (id, item) => {
-//     const existing = await Log.findById(id);
+exports.update = async (id, item) => {
+    const existing = await Score.findById(id);
 
-//     existing.name = item.name;
-//     existing.date = item.date;
-//     existing.description = item.description;
-//     existing.img = item.img;
-//     existing.location = item.location;
+    existing.level = item.level;
+    existing.linesCompleted = item.linesCompleted;
+    existing.points = item.points;
+    existing.date = item.date;
 
-//     return existing.save();
-// }
+    return existing.save();
+}
 
 exports.deleteById = async (id) => {
     return Score.findByIdAndDelete(id);
@@ -69,15 +69,17 @@ exports.addComment = async (id, commentData) => {
 }
 
 exports.addLike = async (id, userId) => {
-    const score = await Score.findById(id).populate('_ownerId').populate('commentList.user');
-    Score.likes.push(userId);
-    Score.save();
+    const score = await Score.findById(id).populate('_ownerId');
+    score.likes.push(userId);
+    score.save();
     return score;
 }
 
-// exports.downloadImage = async (id, userId) => {
-//     const log = await Log.findById(id).populate('_ownerId').populate('commentList.user');
-//     log.downloads.push(userId);
-//     log.save();
-//     return log;
-// }
+exports.removeLike = async (id, userId) => {
+    const score = await Score.findById(id).populate('_ownerId');
+    score.likes = score.likes.filter(x => x._id.toString() !== userId.toString());
+    console.log(score.likes);
+    console.log(userId.toString());
+    score.save();
+    return score;
+}

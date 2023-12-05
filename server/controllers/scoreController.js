@@ -161,21 +161,21 @@ scoreController.put('/:id', isAuth, async (req, res, next) => {
     }
 });
 
-// logController.delete('/:id', isAuth, async (req, res) => {
-//     const item = await logManager.getById(req.params.id);
-//     if (req.user._id != item._ownerId._id.toString()) {
-//         return res.status(403).json({ message: 'You cannot modify this record' });
-//     }
+scoreController.delete('/:id', isAuth, async (req, res) => {
+    const item = await scoreManager.getById(req.params.id);
+    if (req.user._id != item._ownerId._id.toString()) {
+        return res.status(403).json({ message: 'You cannot modify this record' });
+    }
 
-//     try {
-//         await logManager.deleteById(req.params.id);
-//         res.status(204).end();
-//     } catch (err) {
-//         const message = parseError(err);
-//         console.log(message);
-//         res.status(400).json({ message });
-//     }
-// });
+    try {
+        await scoreManager.deleteById(req.params.id);
+        res.status(204).end();
+    } catch (err) {
+        const message = parseError(err);
+        console.log(message);
+        res.status(400).json({ message });
+    }
+});
 
 
 //COMMENT==================================================================
@@ -195,24 +195,27 @@ scoreController.put('/:id', isAuth, async (req, res, next) => {
 
 
 //LIKES==================================================================
-// logController.get('/:id/likes', isAuth, async (req, res) => {
-//     const logId = req.params.id;
-//     const userId = req.user._id;
-//     try {
-//         const log = await logManager.getById(logId);
-//         const isLiked = log.likes.map(x => x._id.toString()).includes(req.user?._id.toString());
-//         if (isLiked) {
-//             return res.status(400).json({ message: 'You have already liked this log!' });
-//         }
-
-//         const result = await logManager.addLike(logId, userId);
-//         res.json(result);
-//     } catch (err) {
-//         const message = parseError(err);
-//         console.log(message);
-//         res.status(400).json({ message });
-//     }
-// });
+scoreController.get('/:id/likes', isAuth, async (req, res) => {
+    const scoreId = req.params.id;
+    const userId = req.user._id;
+    try {
+        const score = await scoreManager.getById(scoreId);
+        const isLiked = score.likes.map(x => x._id.toString()).includes(req.user?._id.toString());
+        let result;
+        if (isLiked) {
+            result = await scoreManager.removeLike(scoreId, userId);
+            console.log('remove like!');
+        } else {
+            result = await scoreManager.addLike(scoreId, userId);
+            console.log('add like!');
+        }
+        res.json(result);
+    } catch (err) {
+        const message = parseError(err);
+        console.log(message);
+        res.status(400).json({ message });
+    }
+});
 
 
 //DOWNLOAD==================================================================
