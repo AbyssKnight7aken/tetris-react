@@ -8,7 +8,7 @@ const Header = () => {
         <header className="section-site-header">
     <div className="container">
         {/* <p className="site-title"><Link to="/">Tetris React</Link></p> */}
-        <Link to="/"><img src="../../../public/images/tetris.png" className="logo" alt="logo" /></Link>
+        <Link to="/"><img src="/images/tetris.png" className="logo" alt="logo" /></Link>
 
         <nav className="main-nav">
             <ul>

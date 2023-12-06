@@ -31,6 +31,12 @@
 
 }
 
+/* .info_section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} */
+
 .info_section p {
     font-size: 1.5em;
     text-shadow: 1px 1px 2px black;
@@ -38,8 +44,13 @@
     margin: 1.3em;
 }
 
+.info_section > p:last-child {
+    margin-top: 3em;
+}
+
 .info_section a {
-    color: #04ffcd;
+    color: #d44179;
+    text-shadow: 1px 1px 2px black;
 }
 
 .game_controls p {

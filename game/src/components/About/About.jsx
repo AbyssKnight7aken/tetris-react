@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
 import styles from './About.module.css';
-import LoadingSpinner from '../common/LoadingSpinner/LoadingSpinner';
 
 const About = () => {
     const imageStyles = {
-        "backgroundImage": "url(public/images/tetris-react.png)",
+        "backgroundImage": "url(/images/tetris-react.png)",
     };
 
     return (

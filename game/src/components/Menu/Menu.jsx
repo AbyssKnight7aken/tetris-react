@@ -1,8 +1,8 @@
-import "./Menu.css";
+import styles from './Menu.module.css';
 
 const Menu = ({ onClick }) => (
-  <div className="Menu">
-    <button className="Button" onClick={onClick}>
+  <div className={styles.Menu}>
+    <button className={styles.Button} onClick={onClick}>
       Play Tetris
     </button>
   </div>

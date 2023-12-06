@@ -9,8 +9,16 @@
 .Button {
   padding: 40px 80px;
   font-size: 2em;
+  color: #121212;
   border-radius: 20px;
   border: none;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 60px;
   cursor: pointer;
+  transition: all 0.3s ease-in;
+}
+
+.Button:hover {
+  background: #04ffcd;
+  color: aliceblue;
+  text-shadow: 1px 1px 2px black;
 }

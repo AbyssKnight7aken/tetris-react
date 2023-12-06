@@ -1,10 +1,11 @@
-import "./Preview.css";
 import React from "react";
 
-import { buildBoard } from "../../business/Board";
-import { transferToBoard } from "../../business/Tetrominoes";
+import styles from './Preview.module.css';
 
-import BoardCell from "../BoardCell/BoardCell";
+import { buildBoard } from '../../business/Board';
+import { transferToBoard } from '../../business/Tetrominoes';
+
+import BoardCell from '../BoardCell/BoardCell';
 
 const Preview = ({ tetromino, index }) => {
   const { shape, className } = tetromino;
@@ -22,8 +23,8 @@ const Preview = ({ tetromino, index }) => {
   });
 
   return (
-    <div className="Preview" style={style}>
-      <div className="Preview-board">
+    <div className={styles.Preview} style={style}>
+      <div className={styles.Preview_board}>
         {board.rows.map((row, y) =>
           row.map((cell, x) => (
             <BoardCell key={x * board.size.columns + x} cell={cell} />

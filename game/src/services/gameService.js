@@ -26,22 +26,16 @@ export const deleteScore = async (scoreId) => {
     return result;
 }
 
-export const getBooksByOwner = async (userId) => {
-    const result = await request.get(`/data/books?where=_ownerId%3D%22${userId}%22&sortBy=_createdOn%20desc`);
+// getUserLogs(userId: string, page: number): Observable<any> {
+//     return this.http.get<any>(`${this.appUrl}/logs?where=_ownerId%3D%22${userId}%22&page=${page}`);
+//   }
+
+export const getUserScores = async (userId) => {
+    const result = await request.get(`/scores?where=_ownerId%3D%22${userId}%22&page=1`);
     return result;
 }
 
 export const addLike = async (scoreId) => {
     const result = await request.get(`/scores/${scoreId}/likes`);
-    return result;
-}
-
-export const getLikesBybookId = async (bookId) => {
-    const result = await request.get(`/data/likes?where=bookId%3D%22${bookId}%22&distinct=_ownerId&count`);
-    return result;
-}
-
-export const getOwnerLikesByBookId = async (bookId, userId) => {
-    const result = await request.get(`/data/likes?where=bookId%3D%22${bookId}%22%20and%20_ownerId%3D%22${userId}%22&count`);
     return result;
 }

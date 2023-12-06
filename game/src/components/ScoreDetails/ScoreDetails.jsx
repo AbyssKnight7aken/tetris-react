@@ -1,5 +1,7 @@
 import { useContext, useEffect, useState, useReducer } from 'react'
 import { useParams, Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
 import { AuthContext } from '../../contexts/authContext';
 import { useGameContext } from '../../contexts/gameContext';
@@ -100,10 +102,13 @@ const ScoreDetails = () => {
                     </div>
 
                     <div className="buttons">
-                        <p className="button-red">Likes: {score.likes?.length}</p>
+                        {
+                            isAuthenticated && isOwner &&
+                            <p className="button-red"><FontAwesomeIcon icon={faThumbsUp}>icon</FontAwesomeIcon> {score.likes?.length}</p>
+                        }
                         {
                             isAuthenticated && !isOwner &&
-                            <p className="button-blue"><Link onClick={onLikeClick} to="">Likes: {score.likes?.length}</Link></p>
+                            <p className="button-blue"><Link onClick={onLikeClick} to=""><FontAwesomeIcon icon={faThumbsUp}>icon</FontAwesomeIcon> {score.likes?.length}</Link></p>
                         }
                         {
                             isAuthenticated && isOwner &&

@@ -1,4 +1,4 @@
-import "./GameController.css";
+import styles from './GameController.module.css';
 
 import { Action, actionForKey, actionIsDrop } from "../../business/Input";
 import { playerController } from "../../business/PlayerController";
@@ -51,7 +51,7 @@ const GameController = ({ board, gameStats, player, setGameOver, setPlayer }) =>
 
   return (
     <input
-      className="GameController"
+      className={styles.GameController}
       type="text"
       onKeyDown={onKeyDown}
       onKeyUp={onKeyUp}

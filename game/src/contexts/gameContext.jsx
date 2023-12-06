@@ -68,14 +68,14 @@ export const GameProvider = ({ children }) => {
         navigate('/scoreBoard');
     }
 
-    const getGame = (gameId) => {
-        return games.find(game => game._id === gameId);
+    const getScore = (scoreId) => {
+        return scores.find(score => score._id === scoreId);
     }
 
 
     const gameContext = {
         scores,
-        getGame,
+        getScore,
         onCreateGameSubmit,
         onScoreEditSubmit,
         onGameDelete,

@@ -61,10 +61,15 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem('auth');
     }
 
+    const onUserEditSubmit = async () => {
+        console.log('edited user!');
+    }
+
     const context = {
         onRegisterSubmit,
         onLoginSubmit,
         onLogout,
+        onUserEditSubmit,
         userId: auth._id,
         token: auth.accessToken,
         username: auth.username,

@@ -1,5 +1,5 @@
 import {useContext} from 'react';
-import "./Tetris.css";
+import styles from './Tetris.module.css';
 
 import Board from "../Board/Board";
 import GameController from "../GameController/GameController";
@@ -11,7 +11,6 @@ import { usePlayer } from "../../hooks/usePlayer";
 import { GameContext } from "../../contexts/gameContext";
 
 const Tetris = ({ rows, columns, setGameOver }) => {
-  //const [gameStats, addLinesCleared] = useGameStats();
   const { gameStats, addLinesCleared } = useContext(GameContext);
   const [player, setPlayer, resetPlayer] = usePlayer();
   const [board, setBoard] = useBoard({
@@ -24,7 +23,7 @@ const Tetris = ({ rows, columns, setGameOver }) => {
 
 
   return (
-    <div className="Tetris">
+    <div className={styles.Tetris}>
       <Board board={board} />
       <GameStats gameStats={gameStats} />
       <Previews tetrominoes={player.tetrominoes} />

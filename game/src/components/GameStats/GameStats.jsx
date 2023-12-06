@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import "./GameStats.css";
+import styles from "./GameStats.module.css";
 
 const GameStats = ({ gameStats }) => {
   const { level, points, linesCompleted, linesPerLevel } = gameStats;
@@ -9,13 +9,13 @@ const GameStats = ({ gameStats }) => {
   //console.log(gameStats);
 
   return (
-    <ul className="GameStats GameStats__right">
+    <ul className={`${styles.GameStats} ${styles.GameStats__right}`}>
       <li>Level</li>
-      <li className="value">{level}</li>
+      <li className={styles.value}>{level}</li>
       <li>Lines to level</li>
-      <li className="value">{linesToLevel}</li>
+      <li className={styles.value}>{linesToLevel}</li>
       <li>Points</li>
-      <li className="value">{points}</li>
+      <li className={styles.value}>{points}</li>
     </ul>
   );
 };
