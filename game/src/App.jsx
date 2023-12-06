@@ -1,7 +1,7 @@
-import { useState } from 'react'
-import Game from './components/Game/Game';
 import { Routes, Route } from "react-router-dom";
-import './App.css'
+import styles from './App.module.css';
+
+import Game from './components/Game/Game';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import ScoreBoard from './components/ScoreBoard/ScoreBoard';
@@ -17,12 +17,14 @@ import { RouteGuard } from './components/guards/RouteGuard';
 import { GuestGuard } from './components/guards/GuestGuard';
 import ScoreDetails from './components/ScoreDetails/ScoreDetails';
 import EditScore from './components/EditScore/EditScore';
+import EditUserInfo from './components/EditUserInfo/EditUserInfo';
+import { GameOwner } from './components/guards/GameOwner';
 
 function App() {
     return (
         <AuthProvider>
             <GameProvider>
-                <div className="App">
+                <div className={styles.App}>
                     <Header />
                     <Routes>
                         <Route path='/' element={<Home />} />
@@ -32,12 +34,12 @@ function App() {
                             <Route path='/game' element={<Game rows={20} columns={10} />} />
                             <Route path="/logout" element={<Logout />} />
                             <Route path='/profile' element={<Profile />} />
-                            < Route path='/scoreboard/:scoreId/edit' element={<EditScore />} />
-                            {/* < Route path='/catalogue/:gameId/edit' element={
+                            <Route path='/profile/edit' element={<EditUserInfo />} />
+                            < Route path='/scoreboard/:scoreId/edit' element={
                                 <GameOwner>
-                                    <EditGame />
+                                    <EditScore />
                                 </GameOwner>
-                            } /> */}
+                            } />
                         </Route>
                         <Route element={<GuestGuard />}>
                             <Route path='/register' element={<Register />} />
@@ -45,8 +47,8 @@ function App() {
                         </Route>
                         <Route path="/about" element={<About />} />
                     </Routes>
+                    <Footer />
                 </div>
-                <Footer />
             </GameProvider>
         </AuthProvider>
     )
