@@ -97,13 +97,17 @@ const ScoreDetails = () => {
 
                     <div className="ag-courses-item_date-box">
                         <span className="ag-courses-item_date">
-                        {score.date}
+                            {score.date}
                         </span>
                     </div>
 
                     <div className="buttons">
                         {
-                            (isAuthenticated && isOwner) || !isAuthenticated &&
+                            isAuthenticated && isOwner &&
+                            <p className="button-red"><FontAwesomeIcon icon={faThumbsUp}>icon</FontAwesomeIcon> {score.likes?.length}</p>
+                        }
+                        {
+                            !isAuthenticated &&
                             <p className="button-red"><FontAwesomeIcon icon={faThumbsUp}>icon</FontAwesomeIcon> {score.likes?.length}</p>
                         }
                         {
