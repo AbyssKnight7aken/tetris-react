@@ -6,7 +6,7 @@
   .user_scores {
     display: flex;
     flex-wrap: wrap;
-    margin: 10em auto;
+    margin: 5em auto;
     max-width: 65vw;
   }
 
@@ -159,6 +159,10 @@
     z-index: 2;
     background: #B6416D;
     text-shadow: 1px 1px 2px black;
+  }
+
+  .button-red:hover {
+    scale: 1.1;
   }
   
   .button-red a {

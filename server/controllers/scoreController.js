@@ -11,22 +11,22 @@ const { parseError } = require('../util/parser');
 const itemsPerPage = 6;
 
 
-// logController.get('/count', async (req, res) => {
-//     try {
-//         const count = await logManager.getCount();
-//         let pageCount = 0;
-//         if (count % itemsPerPage === 0) {
-//             pageCount = count / itemsPerPage;
-//         } else {
-//             pageCount = Math.floor(count / itemsPerPage) + 1;
-//         }
-//         res.json(pageCount);
-//     } catch (err) {
-//         const message = parseError(err);
-//         console.log(message);
-//         res.status(400).json({ message });
-//     }
-// });
+scoreController.get('/count', async (req, res) => {
+    try {
+        const count = await scoreManager.getCount();
+        let pageCount = 0;
+        if (count % itemsPerPage === 0) {
+            pageCount = count / itemsPerPage;
+        } else {
+            pageCount = Math.floor(count / itemsPerPage) + 1;
+        }
+        res.json(pageCount);
+    } catch (err) {
+        const message = parseError(err);
+        console.log(message);
+        res.status(400).json({ message });
+    }
+});
 
 
 // logController.get('/rescent', async (req, res) => {
@@ -72,10 +72,12 @@ const itemsPerPage = 6;
 scoreController.get('/', async (req, res) => {
     let items = [];
     const page = req.query.page - 1 || 0;
-
+    console.log(req.query.where);
     try {
         if (req.query.where) {
             const userId = JSON.parse(req.query.where.split('=')[1]);
+            console.log(userId);
+            console.log(page);
             items = await scoreManager.getByUserId(userId, page, itemsPerPage);
         } else {
             items = await scoreManager.getAll(page, itemsPerPage);

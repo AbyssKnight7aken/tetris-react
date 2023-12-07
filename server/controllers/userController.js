@@ -57,6 +57,7 @@ userController.post('/login', async (req, res) => {
 userController.put('/update', async (req, res, next) => {
     console.log(req.body.password);
     const user = await userManager.getUserInfo(req.user.email);
+    console.log(req.user.email);
 
     const isValid = await bcrypt.compare(req.body.password, user.password);
 
@@ -64,7 +65,6 @@ userController.put('/update', async (req, res, next) => {
         return res.status(403).json({ message: 'Invalid password!' });
     }
 
-    //console.log(user);
     if (!user) {
         return res.status(403).json({ message: 'Unauthorized!' });
     }
@@ -73,10 +73,10 @@ userController.put('/update', async (req, res, next) => {
         const userData = {
             "username": req.body.username,
             "email": req.body.email,
-            "img": {
-                "data": fs.readFileSync("uploads/" + req.file.filename),
-                "contentType": "image/png",
-            },
+            // "img": {
+            //     "data": fs.readFileSync("uploads/" + req.file.filename),
+            //     "contentType": "image/png",
+            // },
             "_ownerId": req.user._id
         };
 

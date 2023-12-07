@@ -40,7 +40,7 @@ exports.update = async (email, userData) => {
 
     existing.username = userData.username;
     existing.email = userData.email;
-    existing.img = userData.img;
+    //existing.img = userData.img;
     existing.password = existing.password;
 
     existing.save();

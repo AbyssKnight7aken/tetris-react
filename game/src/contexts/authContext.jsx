@@ -61,8 +61,17 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem('auth');
     }
 
-    const onUserEditSubmit = async () => {
-        console.log('edited user!');
+    const onUserEditSubmit = async (userData) => {
+        try {
+            const updatedUser = await authService.update(userData);
+            console.log(updatedUser);
+            setAuth(updatedUser);
+            navigate('/profile');
+        } catch (error) {
+            console.log(error.message);
+            return setServerError(error.message);
+        }
+
     }
 
     const context = {

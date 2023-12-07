@@ -2,17 +2,33 @@ import { useContext, useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom';
 
 import { AuthContext } from '../../contexts/authContext';
-import { GameContext, useGameContext } from '../../contexts/gameContext';
+import { useGameContext } from '../../contexts/gameContext';
 import * as gameService from '../../services/gameService';
 import Modal from '../common/Modal/Modal';
 
 import './Profile.css';
 import Card from '../common/Card/Card';
+import Pagination from '../common/Pagination/Pagination';
 
 const Profile = () => {
     const { userId, username, userEmail } = useContext(AuthContext);
-    const { scores } = useContext(GameContext);
-    const userScores = scores.filter(x => x._ownerId._id === userId);
+    const { page } = useGameContext();
+    const [userScores, setUserScores] = useState([]);
+    //const {userScores, setUserScores} = useGameContext();
+    
+    useEffect(() => {
+        async function getAllUserScores() {
+            const result = await gameService.getUserScores(userId, page);
+            console.log(result);
+            setUserScores(result);
+        }
+        getAllUserScores();
+        //const userScores = scores.filter(x => x._ownerId._id === userId);
+    }, [page]);
+
+    console.log(userScores);
+    console.log(userId);
+
     //const userScores = [];
 
     return (
@@ -42,10 +58,11 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-                <h1>Player Scores :</h1>
-                {userScores.length === 0 && <h2>This player has no scores yet !</h2>}
+            <h1>Player Scores :</h1>
+            <Pagination pageCount={userScores.pageCount}/>
+            {userScores?.userScores?.length === 0 && <h2>This player has no scores yet !</h2>}
             <div className="user_scores">
-                {userScores.length !== 0 && userScores.map(x => <Card key={x._id} score={x} />)}
+                {userScores?.length !== 0 && userScores?.userScores.map(x => <Card key={x._id} score={x} />)}
             </div>
         </section>
     );

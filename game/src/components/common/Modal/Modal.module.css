@@ -65,14 +65,14 @@ when users will click/enter button(link) browser will add a #id in a url and whe
 
 .modal__title {
     font-size: 3.2rem;
-    color: #04ffcd;
+    color: #d44179;
     text-shadow: 1px 1px 2px black;
 }
 
 .modal__text {
     padding: 0 4rem;
     margin-top: 4rem;
-    color: #04ffcd;
+    color: #d44179;
     text-shadow: 1px 1px 2px black;
     font-size: 2rem;
     line-height: 2;

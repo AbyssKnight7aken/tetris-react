@@ -47,8 +47,8 @@ function App() {
                         </Route>
                         <Route path="/about" element={<About />} />
                     </Routes>
-                    <Footer />
                 </div>
+                <Footer />
             </GameProvider>
         </AuthProvider>
     )

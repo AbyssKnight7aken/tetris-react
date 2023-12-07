@@ -9,6 +9,8 @@ export const GameContext = createContext();
 export const GameProvider = ({ children }) => {
     const navigate = useNavigate();
     const [scores, setScores] = useState([]);
+    const [pageCount, setPageCount] = useState();
+    const [page, setPage] = useState(1);
     const [serverError, setServerError] = useState(null);
     const resetServerError = () => {
         setServerError(null);
@@ -19,8 +21,11 @@ export const GameProvider = ({ children }) => {
     useEffect(() => {
         try {
             async function getAllScores() {
-                const scores = await gameService.getAll();
-                console.log(scores);
+                const [scores, pages, userScores] = await Promise.all([
+                    gameService.getAll(page),
+                    gameService.getCount(),
+                ]);
+                setPageCount(pages);
                 setScores(scores);
                 return scores;
             }
@@ -30,14 +35,17 @@ export const GameProvider = ({ children }) => {
             return setServerError(error.message);
         }
 
-    }, []);
+    }, [page]);
 
     const onCreateGameSubmit = async (data) => {
         try {
-            const newScore = await gameService.createScore(data);
-            //setScores(state => [...state, newScore]);
-            const scores = await gameService.getAll();
-            setScores(scores);
+            const [newScore, newScores] = await Promise.all([
+                gameService.createScore(data),
+                gameService.getAll()
+            ]);
+            console.log(newScore);
+            //setScores(state => [...state, newScore])
+            setScores(newScores);
             resetGameStats();
             navigate('/scoreBoard');
         } catch (error) {
@@ -62,7 +70,7 @@ export const GameProvider = ({ children }) => {
 
     }
 
-    const onGameDelete =async (scoreId) => {
+    const onGameDelete = async (scoreId) => {
         gameService.deleteScore(scoreId);
         setScores(state => state.filter(score => score._id !== scoreId));
         navigate('/scoreBoard');
@@ -83,8 +91,11 @@ export const GameProvider = ({ children }) => {
         addLinesCleared,
         serverError,
         resetServerError,
+        page,
+        setPage,
+        pageCount
     };
-    //console.log(context);
+
     return (
         < GameContext.Provider value={gameContext}>
             {children}

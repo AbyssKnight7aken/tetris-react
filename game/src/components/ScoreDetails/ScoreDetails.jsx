@@ -103,7 +103,7 @@ const ScoreDetails = () => {
 
                     <div className="buttons">
                         {
-                            isAuthenticated && isOwner &&
+                            (isAuthenticated && isOwner) || !isAuthenticated &&
                             <p className="button-red"><FontAwesomeIcon icon={faThumbsUp}>icon</FontAwesomeIcon> {score.likes?.length}</p>
                         }
                         {

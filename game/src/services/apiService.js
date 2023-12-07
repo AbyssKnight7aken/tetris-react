@@ -26,9 +26,9 @@ async function request(method, url, data) {
         }
 
         if (response.ok == false) {
-            if(response.status == 403) {
-                localStorage.removeItem('auth');
-            }
+            // if(response.status == 403) {
+            //     localStorage.removeItem('auth');
+            // }
 
             const error = result
             throw error;

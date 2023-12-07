@@ -1,0 +1,14 @@
+.site_footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #121212;   
+}
+
+.site_footer p {
+    font-size: 1.3em;
+}
+
+.site_footer a {
+    color: #04ffcd;
+}

@@ -14,20 +14,16 @@ import './EditUserInfo.css';
 
 
 const EditUserInfo = () => {
-    const { username, userEmail, onUserEditSubmit } = useAuthContext();
+    const { username, userEmail, onUserEditSubmit, serverError, resetServerError } = useAuthContext();
     const { values, changeHandler, onSubmit, changeValues, errors, focused, handleFocus } = useForm({
         username: username,
         email: userEmail,
+        password: '',
     }, onUserEditSubmit);
 
-    // useEffect(() => {
-    //     //resetServerError();
-    //     const getScore = async () => {
-    //         const score = await gameService.getScoreById(scoreId);
-    //         changeValues(score);
-    //     };
-    //     getScore();
-    // }, [scoreId]);
+    useEffect(() => {
+        resetServerError();
+    }, []);
 
     return (
         <div className="align">
@@ -35,6 +31,7 @@ const EditUserInfo = () => {
             <div className="grid">
 
                 <form method="POST" className="form login" onSubmit={onSubmit}>
+
                     <div className="form__field">
                         <label htmlFor="username"><FontAwesomeIcon icon={faUser}>icon</FontAwesomeIcon><span className="hidden">Username</span></label>
                         <input
@@ -71,6 +68,24 @@ const EditUserInfo = () => {
 
                     {errors.email && !focused && <span className='error'>{errors.email}</span>}
 
+                    <div className="form__field">
+                        <label htmlFor="password"><FontAwesomeIcon icon={faUser}>icon</FontAwesomeIcon><span className="hidden">Password</span></label>
+                        <input
+                            id="password"
+                            type="password"
+                            className="form__input"
+                            placeholder="password"
+                            required
+                            invalid={errors.password && !focused ? "true" : "false"}
+                            onBlur={handleFocus}
+                            focused={focused.toString()}
+                            name="password"
+                            value={values.password}
+                            onChange={changeHandler} />
+                    </div>
+
+                    {errors.password && !focused && <span className='error'>{errors.password}</span>}
+
                     {/* <div className="form__field">
                         <label htmlFor="points"><svg className="icon"><use xmlnsXlink="http://www.w3.org/1999/xlink" xlinkHref="#lock"></use></svg><span className="hidden">Password</span></label>
                         <input
@@ -93,7 +108,7 @@ const EditUserInfo = () => {
                         <input disabled={Object.keys(errors).length > 0} type="submit" value="Edit User Info" />
                     </div>
 
-                    {/* {serverError && Object.keys(errors).length === 0 && <span className='error'>{serverError}</span>} */}
+                    {serverError && Object.keys(errors).length === 0 && <span className='error'>{serverError}</span>}
 
                 </form>
 
