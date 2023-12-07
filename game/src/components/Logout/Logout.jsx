@@ -10,7 +10,7 @@ const Logout = () => {
         onLogout();
     }, [onLogout]);
 
-    return <Navigate to="/" />;
+    return <Navigate to="/scoreboard" />;
 }
 
 export default Logout;

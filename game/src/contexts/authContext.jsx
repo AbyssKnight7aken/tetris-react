@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
             // console.log(formData.get('username'));
             const user = await authService.register(data);
             setAuth(user);
-            navigate('/game');
+            navigate('/scoreboard');
 
         } catch (error) {
             console.log(error.message);
@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
             // }
             const user = await authService.login(data.email, data.password);
             setAuth(user);
-            navigate('/game');
+            navigate('/scoreboard');
         } catch (error) {
             console.log(error.message);
             return setServerError(error.message);

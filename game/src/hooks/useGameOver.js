@@ -17,9 +17,7 @@ export const useGameOver = () => {
 
   const resetGameOver = useCallback(() => {
     if (!isAuthenticated) {
-      if (!isAuthenticated) {
       return navigate('/login');
-    }
     }
     console.log(gameOver);
     setGameOver(false);

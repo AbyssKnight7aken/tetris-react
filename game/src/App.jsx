@@ -31,7 +31,7 @@ function App() {
                         <Route path='/scoreboard' element={<ScoreBoard />} />
                         < Route path='/scoreboard/:scoreId' element={<ScoreDetails />} />
                         <Route element={<RouteGuard />}>
-                            <Route path='/game' element={<Game rows={20} columns={10} />} />
+                            {/* <Route path='/game' element={<Game rows={20} columns={10} />} /> */}
                             <Route path="/logout" element={<Logout />} />
                             <Route path='/profile' element={<Profile />} />
                             <Route path='/profile/edit' element={<EditUserInfo />} />
