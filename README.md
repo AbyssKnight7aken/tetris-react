@@ -99,14 +99,14 @@ File Structure Overview:
     - authContext - Holds and provides the user info state.
     - gameContext - manages the scores and provides the scores stare to other parts of the app.
 * hooks folder - Set of custom hooks used for providing core functionalities across the components.
-    - useBoard -
-    - useDropTime -
-    - useForm - managing the forms and data validation.
-    - useGameOver - functionality that manages the game state and calls the apiService to store the game result in the databese, when the game is over.
-    - useGameStats - manages the game stats state.
-    - useInterval -
-    - useLocalStorage - custom hook that stores the token in the browser's local storage.
-    - usePlayer -
+    - useBoard - Builds and manages the state of game board screen.
+    - useDropTime - Manages the drop times of the game.
+    - useForm - Managing the forms and data validation.
+    - useGameOver - Functionality that manages the game state and calls the apiService to store the game result in the databese, when the game is over.
+    - useGameStats - Manages the game stats state.
+    - useInterval - Functionality that manages and optimizes the usage of setIntervals.
+    - useLocalStorage - Custom hook that stores the token in the browser's local storage.
+    - usePlayer - Builds and updates the player object and passes its state to the game.
 * services folder - Holds the logic for communicating with the server:
     - apiService - main requester that sends http request to the Rest api.
     - authService - User authentication and autorization requests.
