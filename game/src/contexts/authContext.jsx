@@ -15,22 +15,17 @@ export const AuthProvider = ({ children }) => {
     };
 
     const onRegisterSubmit = async (data) => {
+
         try {
-            // if (data.email === '' || data.password === '') {
-            //     return alert('All fields are required!');
-            // }
-
-            // if (data.password !== data['repeat-password']) {
-            //     return alert('Password dos\'t march');
-            // }
-
             console.log(data);
             // const formData = new FormData();
             // formData.append('username', data.username);
             // formData.append('email', data.email);
             // formData.append('password', data.password);
-            // //formData.append('img', this.selectedFile);
-            // console.log(formData.get('username'));
+            // formData.append('avatar', avatar);
+            // console.log(formData.get('avatar'));
+
+
             const user = await authService.register(data);
             setAuth(user);
             navigate('/scoreboard');
@@ -43,9 +38,6 @@ export const AuthProvider = ({ children }) => {
 
     const onLoginSubmit = async (data) => {
         try {
-            //     if (data.email === '' || data.password === '') {
-            //     return;
-            // }
             const user = await authService.login(data.email, data.password);
             setAuth(user);
             navigate('/scoreboard');
@@ -85,7 +77,7 @@ export const AuthProvider = ({ children }) => {
         userEmail: auth.email,
         isAuthenticated: !!auth.accessToken,
         serverError,
-        resetServerError
+        resetServerError,
     }
 
     return (

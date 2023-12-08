@@ -9,11 +9,11 @@ import { useForm } from '../../../hooks/useForm';
 
 import './Register.css';
 
-const LoginFormKeys = {
+const RegisterFormKeys = {
     name: 'username',
     email: 'email',
     password: 'password',
-    repass: 'repeat-password'
+    repass: 'repeat-password',
 };
 
 const Register = () => {
@@ -24,11 +24,12 @@ const Register = () => {
     }, []);
 
     const { values, changeHandler, onSubmit, errors, focused, handleFocus } = useForm({
-        [LoginFormKeys.name]: '',
-        [LoginFormKeys.email]: '',
-        [LoginFormKeys.password]: '',
-        [LoginFormKeys.repass]: ''
+        [RegisterFormKeys.name]: '',
+        [RegisterFormKeys.email]: '',
+        [RegisterFormKeys.password]: '',
+        [RegisterFormKeys.repass]: ''
     }, onRegisterSubmit);
+
 
     return (
         <div className="align">
@@ -48,12 +49,12 @@ const Register = () => {
                             invalid={errors.username && !focused ? "true" : "false"}
                             onBlur={handleFocus}
                             focused={focused.toString()}
-                            name={LoginFormKeys.name}
-                            value={values[LoginFormKeys.name]}
+                            name={RegisterFormKeys.name}
+                            value={values[RegisterFormKeys.name]}
                             onChange={changeHandler} />
                     </div>
 
-                    {errors.username && !focused && <span className='error'>{errors.username}</span> }
+                    {errors.username && !focused && <span className='error'>{errors.username}</span>}
 
                     <div className="form__field">
                         <label htmlFor="login__email"><FontAwesomeIcon icon={faEnvelope}>icon</FontAwesomeIcon><span className="hidden">Username</span></label>
@@ -65,12 +66,12 @@ const Register = () => {
                             invalid={errors.email && !focused ? "true" : "false"}
                             onBlur={handleFocus}
                             focused={focused.toString()}
-                            name={LoginFormKeys.email}
-                            value={values[LoginFormKeys.email]}
+                            name={RegisterFormKeys.email}
+                            value={values[RegisterFormKeys.email]}
                             onChange={changeHandler} />
                     </div>
 
-                    {errors.email && !focused && <span className='error'>{errors.email}</span> }
+                    {errors.email && !focused && <span className='error'>{errors.email}</span>}
 
                     <div className="form__field">
                         <label htmlFor="login__password"><FontAwesomeIcon icon={faLock}>icon</FontAwesomeIcon><span className="hidden">Password</span></label>
@@ -83,12 +84,12 @@ const Register = () => {
                             invalid={errors.password && !focused ? "true" : "false"}
                             onBlur={handleFocus}
                             focused={focused.toString()}
-                            name={LoginFormKeys.password}
-                            value={values[LoginFormKeys.password]}
+                            name={RegisterFormKeys.password}
+                            value={values[RegisterFormKeys.password]}
                             onChange={changeHandler} />
                     </div>
 
-                    {errors.password && !focused && <span className='error'>{errors.password}</span> }
+                    {errors.password && !focused && <span className='error'>{errors.password}</span>}
 
                     <div className="form__field">
                         <label htmlFor="login__repeat-password"><FontAwesomeIcon icon={faLock}>icon</FontAwesomeIcon><span className="hidden">Password</span></label>
@@ -101,15 +102,15 @@ const Register = () => {
                             invalid={errors.confirmPassword && !focused ? "true" : "false"}
                             onBlur={handleFocus}
                             focused={focused.toString()}
-                            name={LoginFormKeys.repass}
-                            value={values[LoginFormKeys.repass]}
+                            name={RegisterFormKeys.repass}
+                            value={values[RegisterFormKeys.repass]}
                             onChange={changeHandler} />
                     </div>
 
-                    {errors.confirmPassword && !focused && <span className='error'>{errors.confirmPassword}</span> }
+                    {errors.confirmPassword && !focused && <span className='error'>{errors.confirmPassword}</span>}
 
                     <div className="form__field">
-                        <input disabled={Object.keys(errors).length > 0 } type="submit" value="Register" />
+                        <input disabled={Object.keys(errors).length > 0} type="submit" value="Register" />
                     </div>
 
                     {serverError && Object.keys(errors).length === 0 && <span className='error'>{serverError}</span>}
