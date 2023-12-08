@@ -96,8 +96,8 @@ File Structure Overview:
         - ScoreBoard - Catalogue that displays all scores from the database in separate pages.
         - ScoreDetails - shows detailed information about the score.
 * context folder - Includes the contexts of the application:
-    - authContext
-    - gameContext
+    - authContext - Holds and provides the user info state.
+    - gameContext - manages the scores and provides the scores stare to other parts of the app.
 * hooks folder - Set of custom hooks used for providing core functionalities across the components.
     - useBoard -
     - useDropTime -
