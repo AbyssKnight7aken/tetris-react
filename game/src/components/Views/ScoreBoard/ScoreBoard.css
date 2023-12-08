@@ -1,4 +1,8 @@
 .scores {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
     margin: 10em auto;
     max-width: 65vw;
 }
@@ -14,4 +18,10 @@
     font-size: 2em;
     color: #d44179;
     text-shadow: 1px 1px 2px black;
+}
+
+.spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

@@ -12,7 +12,13 @@ export const GameProvider = ({ children }) => {
     const [pageCount, setPageCount] = useState();
     const [page, setPage] = useState(1);
     const [serverError, setServerError] = useState(null);
+    const [loading, setLoading] = useState(false);
     
+    // const resetLoading = useCallback(() => {
+    //     setLoading(!loading);
+    //     console.log(loading);
+    // },[]);
+
     const resetServerError = useCallback(() => {
         setServerError(null);
     },[]);
@@ -25,6 +31,8 @@ export const GameProvider = ({ children }) => {
 
     useEffect(() => {
         try {
+            setLoading(true);
+            console.log(loading);
             async function getAllScores() {
                 const [scores, pages, userScores] = await Promise.all([
                     gameService.getAll(page),
@@ -32,6 +40,8 @@ export const GameProvider = ({ children }) => {
                 ]);
                 setPageCount(pages);
                 setScores(scores);
+                setLoading(false);
+                console.log(loading);
                 return scores;
             }
             getAllScores();
@@ -99,7 +109,8 @@ export const GameProvider = ({ children }) => {
         page,
         setPage,
         pageCount,
-        resetPage
+        resetPage,
+        loading,
     };
 
     return (

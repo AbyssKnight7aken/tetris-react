@@ -5,6 +5,8 @@ import { AuthContext } from '../../../contexts/authContext';
 import { useGameContext } from '../../../contexts/gameContext';
 import * as gameService from '../../../services/gameService';
 import Modal from '../../common/Modal/Modal';
+import LoadingSpinner from '../../common/LoadingSpinner/LoadingSpinner';
+
 
 import './Profile.css';
 import Card from '../../common/Card/Card';
@@ -12,7 +14,7 @@ import Pagination from '../../common/Pagination/Pagination';
 
 const Profile = () => {
     const { userId, username, userEmail } = useContext(AuthContext);
-    const { page, resetPage } = useGameContext();
+    const { page, resetPage, loading } = useGameContext();
     const [userScores, setUserScores] = useState([]);
     //const {userScores, setUserScores} = useGameContext();
     
@@ -61,9 +63,12 @@ const Profile = () => {
             </div>
             <h1>Player Scores :</h1>
             <Pagination pageCount={userScores.pageCount}/>
-            {userScores?.userScores?.length === 0 && <h2>This player has no scores yet !</h2>}
+            <div className="spinner">
+                    {loading && <LoadingSpinner />}
+                </div>
+            {!loading && userScores?.userScores?.length === 0 && <h2>This player has no scores yet !</h2>}
             <div className="user_scores">
-                {userScores?.length !== 0 && userScores?.userScores.map(x => <Card key={x._id} score={x} />)}
+                {!loading && userScores?.length !== 0 && userScores?.userScores.map(x => <Card key={x._id} score={x} />)}
             </div>
         </section>
     );
