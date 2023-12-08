@@ -51,6 +51,19 @@ const ScoreDetails = () => {
     //     dispatch({ type: 'ADD_COMMENT', payload: newComment, userEmail })
     // }
 
+    const formatDate = (dateString) => {
+        const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: 'numeric'
+        };
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', options);
+    };
+
     const onDeleteClick = async () => {
         setShowModal(true);
     }
@@ -97,7 +110,7 @@ const ScoreDetails = () => {
 
                     <div className="ag-courses-item_date-box">
                         <span className="ag-courses-item_date">
-                            {score.date}
+                            {formatDate(score.date)}
                         </span>
                     </div>
 

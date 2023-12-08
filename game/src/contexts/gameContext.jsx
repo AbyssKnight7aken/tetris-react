@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, useContext } from 'react';
+import { useState, useEffect, createContext, useContext, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGameStats } from '../hooks/useGameStats';
 
@@ -12,9 +12,14 @@ export const GameProvider = ({ children }) => {
     const [pageCount, setPageCount] = useState();
     const [page, setPage] = useState(1);
     const [serverError, setServerError] = useState(null);
-    const resetServerError = () => {
+    
+    const resetServerError = useCallback(() => {
         setServerError(null);
-    };
+    },[]);
+
+    const resetPage = useCallback(() => {
+        setPage(1)
+    },[]);
 
     const [gameStats, addLinesCleared, resetGameStats] = useGameStats();
 
@@ -93,7 +98,8 @@ export const GameProvider = ({ children }) => {
         resetServerError,
         page,
         setPage,
-        pageCount
+        pageCount,
+        resetPage
     };
 
     return (

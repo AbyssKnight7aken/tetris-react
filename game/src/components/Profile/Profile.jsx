@@ -12,13 +12,14 @@ import Pagination from '../common/Pagination/Pagination';
 
 const Profile = () => {
     const { userId, username, userEmail } = useContext(AuthContext);
-    const { page } = useGameContext();
+    const { page, resetPage } = useGameContext();
     const [userScores, setUserScores] = useState([]);
     //const {userScores, setUserScores} = useGameContext();
     
     useEffect(() => {
         async function getAllUserScores() {
             const result = await gameService.getUserScores(userId, page);
+            resetPage()
             console.log(result);
             setUserScores(result);
         }

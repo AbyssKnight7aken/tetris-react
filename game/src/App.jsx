@@ -19,6 +19,7 @@ import ScoreDetails from './components/ScoreDetails/ScoreDetails';
 import EditScore from './components/EditScore/EditScore';
 import EditUserInfo from './components/EditUserInfo/EditUserInfo';
 import { GameOwner } from './components/guards/GameOwner';
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
     return (
@@ -46,7 +47,7 @@ function App() {
                             <Route path='/login' element={<Login />} />
                         </Route>
                         <Route path="/about" element={<About />} />
-                        {/* <Route path="*" element={<NotFound />} /> */}
+                        <Route path="*" element={<NotFound />} />
                     </Routes>
                 </div>
                 <Footer />
