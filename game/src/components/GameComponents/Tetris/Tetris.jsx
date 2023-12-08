@@ -6,9 +6,9 @@ import GameController from "../GameController/GameController";
 import GameStats from "../GameStats/GameStats";
 import Previews from "../Previews/Previews";
 
-import { useBoard } from "../../hooks/useBoard";
-import { usePlayer } from "../../hooks/usePlayer";
-import { GameContext } from "../../contexts/gameContext";
+import { useBoard } from "../../../hooks/useBoard";
+import { usePlayer } from "../../../hooks/usePlayer";
+import { GameContext } from "../../../contexts/gameContext";
 
 const Tetris = ({ rows, columns, setGameOver }) => {
   const { gameStats, addLinesCleared } = useContext(GameContext);

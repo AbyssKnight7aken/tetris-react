@@ -1,8 +1,8 @@
-import Card from '../common/Card/Card';
-import { useGameContext } from '../../contexts/gameContext'
+import Card from '../../common/Card/Card';
+import { useGameContext } from '../../../contexts/gameContext'
 
 import './ScoreBoard.css';
-import Pagination from '../common/Pagination/Pagination';
+import Pagination from '../../common/Pagination/Pagination';
 
 const ScoreBoard = () => {
     const { scores, pageCount } = useGameContext();

@@ -1,25 +1,25 @@
 import { Routes, Route } from "react-router-dom";
 import styles from './App.module.css';
 
-import Game from './components/Game/Game';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-import ScoreBoard from './components/ScoreBoard/ScoreBoard';
-import Register from './components/Register/Register';
-import Login from './components/Login/Login';
-import Logout from './components/Logout/Logout';
-import Profile from './components/Profile/Profile';
-import About from './components/About/About';
-import Home from './components/Home/Home';
+import Game from './components/GameComponents/Game/Game';
+import Header from './components/Layout/Header/Header';
+import Footer from './components/Layout/Footer/Footer';
+import ScoreBoard from './components/Views/ScoreBoard/ScoreBoard';
+import Register from './components/Auth/Register/Register';
+import Login from './components/Auth/Login/Login';
+import Logout from './components/Auth/Logout/Logout';
+import Profile from './components/Auth/Profile/Profile';
+import About from './components/Views/About/About';
+import Home from './components/Views/Home/Home';
 import { AuthProvider } from './contexts/authContext';
 import { GameProvider } from './contexts/gameContext';
 import { RouteGuard } from './components/guards/RouteGuard';
 import { GuestGuard } from './components/guards/GuestGuard';
-import ScoreDetails from './components/ScoreDetails/ScoreDetails';
-import EditScore from './components/EditScore/EditScore';
-import EditUserInfo from './components/EditUserInfo/EditUserInfo';
+import ScoreDetails from './components/Views/ScoreDetails/ScoreDetails';
+import EditScore from './components/Views/EditScore/EditScore';
+import EditUserInfo from './components/Auth/EditUserInfo/EditUserInfo';
 import { GameOwner } from './components/guards/GameOwner';
-import NotFound from "./components/NotFound/NotFound";
+import NotFound from "./components/Views/NotFound/NotFound";
 
 function App() {
     return (

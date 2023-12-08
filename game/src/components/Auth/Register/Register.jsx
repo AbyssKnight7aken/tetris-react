@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 
-import { AuthContext } from "../../contexts/authContext";
-import { useForm } from '../../hooks/useForm';
+import { AuthContext } from "../../../contexts/authContext";
+import { useForm } from '../../../hooks/useForm';
 
 import './Register.css';
 

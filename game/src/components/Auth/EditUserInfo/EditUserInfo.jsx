@@ -3,12 +3,12 @@ import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faUser } from '@fortawesome/free-solid-svg-icons';
 
-import { useForm } from '../../hooks/useForm';
-import { useGameContext } from '../../contexts/gameContext';
-import { AuthContext, useAuthContext } from "../../contexts/authContext";
+import { useForm } from '../../../hooks/useForm';
+import { useGameContext } from '../../../contexts/gameContext';
+import { AuthContext, useAuthContext } from "../../../contexts/authContext";
 
-import * as gameService from '../../services/gameService';
-import * as authService from '../../services/authService';
+import * as gameService from '../../../services/gameService';
+import * as authService from '../../../services/authService';
 
 import './EditUserInfo.css';
 

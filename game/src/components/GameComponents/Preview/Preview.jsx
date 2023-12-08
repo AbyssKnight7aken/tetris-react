@@ -2,8 +2,8 @@ import React from "react";
 
 import styles from './Preview.module.css';
 
-import { buildBoard } from '../../business/Board';
-import { transferToBoard } from '../../business/Tetrominoes';
+import { buildBoard } from '../../../business/Board';
+import { transferToBoard } from '../../../business/Tetrominoes';
 
 import BoardCell from '../BoardCell/BoardCell';
 

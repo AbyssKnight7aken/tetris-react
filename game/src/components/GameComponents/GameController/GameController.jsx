@@ -1,10 +1,10 @@
 import styles from './GameController.module.css';
 
-import { Action, actionForKey, actionIsDrop } from "../../business/Input";
-import { playerController } from "../../business/PlayerController";
+import { Action, actionForKey, actionIsDrop } from "../../../business/Input";
+import { playerController } from "../../../business/PlayerController";
 
-import { useDropTime } from "../../hooks/useDropTime";
-import { useInterval } from "../../hooks/useInterval";
+import { useDropTime } from "../../../hooks/useDropTime";
+import { useInterval } from "../../../hooks/useInterval";
 
 
 const GameController = ({ board, gameStats, player, setGameOver, setPlayer }) => {

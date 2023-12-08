@@ -3,10 +3,10 @@ import { useParams, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
-import { AuthContext } from '../../contexts/authContext';
-import { useGameContext } from '../../contexts/gameContext';
-import * as gameService from '../../services/gameService';
-import Modal from '../common/Modal/Modal';
+import { AuthContext } from '../../../contexts/authContext';
+import { useGameContext } from '../../../contexts/gameContext';
+import * as gameService from '../../../services/gameService';
+import Modal from '../../common/Modal/Modal';
 //import * as commentService from '../../services/commentService';
 
 //import { AddComment } from './AddComment/AddComment';

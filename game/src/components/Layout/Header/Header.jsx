@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useAuthContext } from '../../contexts/authContext';
+import { useAuthContext } from '../../../contexts/authContext';
 import "./Header.css";
 
 const Header = () => {

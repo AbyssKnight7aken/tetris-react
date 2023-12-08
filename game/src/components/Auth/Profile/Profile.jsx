@@ -1,14 +1,14 @@
 import { useContext, useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom';
 
-import { AuthContext } from '../../contexts/authContext';
-import { useGameContext } from '../../contexts/gameContext';
-import * as gameService from '../../services/gameService';
-import Modal from '../common/Modal/Modal';
+import { AuthContext } from '../../../contexts/authContext';
+import { useGameContext } from '../../../contexts/gameContext';
+import * as gameService from '../../../services/gameService';
+import Modal from '../../common/Modal/Modal';
 
 import './Profile.css';
-import Card from '../common/Card/Card';
-import Pagination from '../common/Pagination/Pagination';
+import Card from '../../common/Card/Card';
+import Pagination from '../../common/Pagination/Pagination';
 
 const Profile = () => {
     const { userId, username, userEmail } = useContext(AuthContext);

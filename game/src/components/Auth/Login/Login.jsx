@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 
-import { useAuthContext } from "../../contexts/authContext";
-import { useForm } from '../../hooks/useForm';
+import { useAuthContext } from '../../../contexts/authContext';
+import { useForm } from '../../../hooks/useForm';
 import './Login.css';
 
 const LoginFormKeys = {

@@ -1,6 +1,6 @@
-import {useGameContext} from '../../contexts/gameContext';
-import Game from '../Game/Game';
-import Card from '../common/Card/Card';
+import {useGameContext} from '../../../contexts/gameContext';
+import Game from '../../GameComponents/Game/Game';
+import Card from '../../common/Card/Card';
 import './Home.css';
 
 const Home = () => {
