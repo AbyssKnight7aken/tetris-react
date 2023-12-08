@@ -2,7 +2,7 @@ const Score = require('../models/Score');
 
 
 exports.getAll = async (page, itemsPerPage) => {
-    return Score.find({}).skip(page * itemsPerPage).limit(itemsPerPage).populate('_ownerId');
+    return Score.find({}).sort({ _id: -1 }).skip(page * itemsPerPage).limit(itemsPerPage).populate('_ownerId');
 }
 
 exports.getSearchResult = async (searchInput, page, itemsPerPage) => {
@@ -55,18 +55,6 @@ exports.deleteById = async (id) => {
 exports.getCount = async () => {
     return Score.countDocuments({});
 };
-
-exports.getSearchCount = async (searchParam) => {
-    const regex = new RegExp(searchParam, 'i');
-    return Score.countDocuments({name: {$regex: regex}});
-};
-
-exports.addComment = async (id, commentData) => {
-    const score = await Score.findById(id).populate('_ownerId').populate('commentList.user');
-    Score.commentList.push(commentData);
-    Score.save();
-    return score;
-}
 
 exports.addLike = async (id, userId) => {
     const score = await Score.findById(id).populate('_ownerId');
