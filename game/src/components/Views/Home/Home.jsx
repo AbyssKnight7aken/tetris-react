@@ -27,10 +27,8 @@ const Home = () => {
                 <div className="spinner">
                     {loading && <LoadingSpinner />}
                 </div>
-
                 {!loading && highestScores?.length === 0 && <h2>No scores yet !</h2>}
                 {!loading && highestScores?.length !== 0 && highestScores.map(x => <Card key={x._id} score={x} />)}
-
             </section>
         </>
     );
