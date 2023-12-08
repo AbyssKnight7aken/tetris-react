@@ -29,44 +29,10 @@ scoreController.get('/count', async (req, res) => {
 });
 
 
-// logController.get('/rescent', async (req, res) => {
-//     const logs = await logManager.getRescent();
-//     res.json(logs);
-// });
-
-
-// logController.get('/search', async (req, res) => {
-//     try {
-//         const searchParam = req.query.searchParam;
-//         const count = await logManager.getSearchCount(searchParam);
-//         let pageCount = 0;
-//         if (count % itemsPerPage === 0) {
-//             pageCount = count / itemsPerPage;
-//         } else {
-//             pageCount = Math.floor(count / itemsPerPage) + 1;
-//         }
-//         res.json(pageCount);
-//     } catch (err) {
-//         const message = parseError(err);
-//         console.log(message);
-//         res.status(400).json({ message });
-//     }
-// });
-
-
-// logController.post('/search', async (req, res) => {
-//     try {
-//         const page = req.body.page - 1 || 0;
-//         const searchParam = req.body.searchParam;
-//         const logs = await logManager.getSearchResult(searchParam, page, itemsPerPage);
-//         res.json(logs);
-
-//     } catch (err) {
-//         const message = parseError(err);
-//         console.log(message);
-//         res.status(400).json({ message });
-//     }
-// });
+scoreController.get('/highest', async (req, res) => {
+    const highestScores = await scoreManager.getHighestScores();
+    res.json(highestScores);
+});
 
 
 scoreController.get('/', async (req, res) => {
@@ -180,22 +146,6 @@ scoreController.delete('/:id', isAuth, async (req, res) => {
 });
 
 
-//COMMENT==================================================================
-// logController.post('/:id/comments', isAuth, async (req, res) => {
-//     const logId = req.params.id;
-//     const { comment } = req.body;
-//     const user = req.user._id;
-//     try {
-//         const result = await logManager.addComment(logId, { comment, user });
-//         res.json(result);
-//     } catch (err) {
-//         const message = parseError(err);
-//         console.log(message);
-//         res.status(400).json({ message });
-//     }
-// });
-
-
 //LIKES==================================================================
 scoreController.get('/:id/likes', isAuth, async (req, res) => {
     const scoreId = req.params.id;
@@ -218,22 +168,5 @@ scoreController.get('/:id/likes', isAuth, async (req, res) => {
         res.status(400).json({ message });
     }
 });
-
-
-//DOWNLOAD==================================================================
-// logController.get('/:id/downloads', isAuth, async (req, res) => {
-//     const logId = req.params.id;
-//     const userId = req.user._id;
-//     try {
-//         const log = await logManager.getById(logId);
-//         const result = await logManager.downloadImage(logId, userId);
-//         res.json(result);
-//     } catch (err) {
-//         const message = parseError(err);
-//         console.log(message);
-//         res.status(400).json({ message });
-//     }
-// });
-
 
 module.exports = scoreController;

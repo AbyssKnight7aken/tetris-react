@@ -1,10 +1,9 @@
 import { useContext, useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom';
+import {  Link } from 'react-router-dom';
 
 import { AuthContext } from '../../../contexts/authContext';
 import { useGameContext } from '../../../contexts/gameContext';
 import * as gameService from '../../../services/gameService';
-import Modal from '../../common/Modal/Modal';
 import LoadingSpinner from '../../common/LoadingSpinner/LoadingSpinner';
 
 

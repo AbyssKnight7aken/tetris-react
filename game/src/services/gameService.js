@@ -1,10 +1,6 @@
 import * as request from './apiService';
 
 
-// getCount() {
-//     return this.http.get<number>(`${this.appUrl}/logs/count`);
-//   }
-
 export const getCount = async () => {
     const scoresCount = await request.get('/scores/count');
     return scoresCount;
@@ -12,6 +8,11 @@ export const getCount = async () => {
 
 export const getAll = async (page) => {
     const scores = await request.get(`/scores?page=${page}`);
+    return scores;
+}
+
+export const getHighest = async () => {
+    const scores = await request.get(`/scores/highest`);
     return scores;
 }
 
@@ -36,9 +37,6 @@ export const deleteScore = async (scoreId) => {
     return result;
 }
 
-// getUserLogs(userId: string, page: number): Observable<any> {
-//     return this.http.get<any>(`${this.appUrl}/logs?where=_ownerId%3D%22${userId}%22&page=${page}`);
-//   }
 
 export const getUserScores = async (userId, page) => {
     const result = await request.get(`/scores?where=_ownerId%3D%22${userId}%22&page=${page}`);

@@ -10,8 +10,8 @@ exports.getSearchResult = async (searchInput, page, itemsPerPage) => {
     return  await Score.find({name: {$regex: regex}}).skip(page * itemsPerPage).limit(itemsPerPage).populate('_ownerId');
 }
 
-exports.getRescent = () => {
-    return Score.find({}).sort({ _id: -1 }).limit(3).populate('_ownerId');
+exports.getHighestScores = () => {
+    return Score.find({}).sort({ points: -1 }).limit(3).populate('_ownerId');
 }
 
 

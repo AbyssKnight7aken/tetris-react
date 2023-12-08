@@ -32,7 +32,6 @@ export const GameProvider = ({ children }) => {
     useEffect(() => {
         try {
             setLoading(true);
-            console.log(loading);
             async function getAllScores() {
                 const [scores, pages, userScores] = await Promise.all([
                     gameService.getAll(page),
@@ -41,7 +40,6 @@ export const GameProvider = ({ children }) => {
                 setPageCount(pages);
                 setScores(scores);
                 setLoading(false);
-                console.log(loading);
                 return scores;
             }
             getAllScores();
