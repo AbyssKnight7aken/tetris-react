@@ -1,4 +1,4 @@
-# travelR
+# Tetris-React
 
 Tetris-React web application is my course project for the ReactJS course (October 2023) in SoftUni.
 
@@ -13,9 +13,8 @@ Tetris-React web application is my course project for the ReactJS course (Octobe
 4. [Database](#database)
 
 ## Introduction
-The main goal of TravelR is to be like a bonfire place where you are welcome to share the magic of your journeys all over the world through the art of photography.
 
- The application is designed and implemented according to the ReactJS Course project defense assignment at SoftUni.It has public and private parts.
+The application is designed and implemented according to the ReactJS Course project defense assignment at SoftUni.It has public and private parts.
 
 The public part is visible without authentication and includes the home, scoreboard and about pages, as well as login and register forms.
 
